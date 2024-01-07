@@ -1,0 +1,11 @@
+Name:<h1><%= @restaurant.name %></h1>
+Location:<p><%= @restaurant.location %></p>
+Owner_name:<p><%= @restaurant.owner_name %></p>
+
+
+<% if can? :create, Restaurant %>
+<%#= link_to 'Add Food Item', new_restaurant_food_item_path(restaurant) %>
+<% end %>
+
+
+<%#= render 'food_items/index', food_items: @food_items %>

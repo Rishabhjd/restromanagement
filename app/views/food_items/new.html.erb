@@ -1,0 +1,20 @@
+<h1>FoodItems#new</h1>
+<p>Find me in app/views/food_items/new.html.erb</p>
+<h1>New FoodItem</h1>
+
+<%= form_with model: [ @restaurant, @restaurant.food_items.build ] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br><br>
+
+  <%= f.label :price %>
+  <%= f.text_field :price %><br><br>
+
+  <%= f.label :ingredients %>
+  <%= f.text_field :ingredients %><br><br>
+
+  <%= f.label :image %>
+  <%= f.file_field :image %><br><br>
+  <%= f.submit  %>
+<% end %>
+
+<%= link_to 'Back', restaurant_food_items_path %>

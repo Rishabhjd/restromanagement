@@ -1,0 +1,62 @@
+
+<div class="small-container cart-page">
+  <table>
+    <tr>
+      <th>FoodItem</th>
+      <th>Quantity</th>
+      <th>Subtotal</th>
+    </tr>
+    
+    <tr>
+    <% @cart.line_items.order(:id).each do |line_item| %>
+      <td>
+     
+        <div class="cart-info">
+       
+          <img src="images/buy-1.jpg" />
+          <div>
+            <p><%= line_item.food_item.name %></p>
+            <small>Price:<%= number_to_currency(line_item.food_item.price) %></small>
+            <br />
+            <a href= ""</a>
+          </div>
+        </div>
+      </td>
+      <td>
+      <div class="quantity-section">
+      <%= button_to "-", line_item_reduce_path(:id => line_item), method: :post, class: 'quantity-btn' %>
+      <%= line_item.quantity %>
+      <%= button_to "+", line_item_add_path(:id => line_item), method: :post , class: 'quantity-btn'%>
+          
+        
+          
+      </div></td>
+      <td><%= number_to_currency(line_item.total_price) %></td>
+   
+    </tr>
+    <% @total = number_to_currency(@cart.sub_total) %>
+    <% end %>
+  </table>
+  
+  <div class="total-price">
+    <table>
+      <tr>
+      
+        <td>Subtotal</td>
+        <td><%= @total%></td>
+      </tr>
+      <tr>
+        <td>Tax</td>
+        <td>$00.00</td>
+      </tr>
+      <tr>
+        <td>Total</td>
+        <td><%=@total%></td>
+       
+      </tr>
+    </table>
+    </div>
+    <%= link_to "Proceed to checkout", new_order_path %><br>
+    <%= button_to "Empty Cart", cart_path(@current_cart),method: :delete, data: {confirm: "Are you sure?"}%>
+ 
+</div>

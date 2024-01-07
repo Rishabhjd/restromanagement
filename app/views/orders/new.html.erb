@@ -1,0 +1,11 @@
+<%= form_with model: @order do |f| %>
+   
+    
+    <p>
+      <%= f.label :address %><br>
+      <%= f.text_area :address %>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+  <% end%>

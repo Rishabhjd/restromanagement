@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  restaurant: one
+  totalamt: 1
+  status: MyString
+
+two:
+  user: two
+  restaurant: two
+  totalamt: 1
+  status: MyString

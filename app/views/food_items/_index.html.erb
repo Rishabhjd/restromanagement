@@ -1,0 +1,13 @@
+<h1>Food Items</h1>
+
+<div class="food-items">
+  <% @food_items.each do |food_item| %>
+    <div class="card">
+      <h3><%= food_item.name %></h3>
+      <p><%= food_item.ingredients %></p>
+      <p><%= number_to_currency(food_item.price,unit: "Rs ") %></p>
+      <%= link_to 'View Details', food_item_path(food_item), class: 'btn btn-primary' %>
+  
+    </div>
+  <% end %>
+</div>

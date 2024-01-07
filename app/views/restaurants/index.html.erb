@@ -1,0 +1,67 @@
+<h1 style="text-align: center;">Restaurants</h1>
+
+<% if user_signed_in? %>
+  <% if current_user.superadmin? || current_user.owner? %>
+    
+    <%= link_to "New Restaurant?", new_restaurant_path %>
+    <table border='1'>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @restaurants.order(:id).each do |restaurant| %>
+          <tr>
+            <td><%= restaurant.id %></td>
+            <td><%= restaurant.name %></td>
+            <td><%= restaurant.location %></td>
+            <td>
+              <%= link_to 'Manage Food Items', restaurant_food_items_path(restaurant) %>
+              <%= link_to 'Destroy', restaurant, data: { turbo_method: :delete }, method: :delete %>
+              <%= link_to 'Edit', edit_restaurant_path(restaurant) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    
+    <div class="restaurants">
+      <% @restaurants.each do |restaurant| %>
+        <div class="card">
+          <% if restaurant.image.present? %>
+            <%= image_tag restaurant.image, class: 'restaurant-image' %>
+          <% else %>
+            <p>No image available</p>
+          <% end %>
+          <h2><%= restaurant.name %></h2>
+          <p><%= restaurant.location %></p>
+          <%= link_to 'View Details', restaurant_food_items_path(restaurant), class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+    <br>
+  <% end %>
+<% else %>
+ 
+  <div class="restaurants">
+    <% @restaurants.each do |restaurant| %>
+      <div class="card">
+        <% if restaurant.image.present? %>
+          <%= image_tag restaurant.image, class: 'restaurant-image' %>
+        <% else %>
+          <p>No image available</p>
+        <% end %>
+        <h2><%= restaurant.name %></h2>
+        <p><%= restaurant.location %></p>
+        <%= link_to 'View Details', restaurant_food_items_path(restaurant), class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+  <br>
+<% end %>
+<%#= paginate @restaurants %>

@@ -1,0 +1,19 @@
+<table border='1'>
+<%@restaurant.line_items.each do |line_item| %>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Name</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><%= line_item.quantity%> </td>
+<td><%= line_item.food_item.name%></td>
+<td>Rs <%= line_item.food_item.price%></td>
+</tr>
+</tbody>
+<%end%>
+</table>
+

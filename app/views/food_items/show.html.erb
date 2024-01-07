@@ -1,0 +1,29 @@
+<!-- app/views/food_items/show.html.erb -->
+
+
+<div class="food-item-details">
+  <h1><%= @food_item.name %></h1>
+  <p><strong>Ingredients:</strong> <%= @food_item.ingredients %></p>
+  <p><strong>Price:</strong> Rs <%= @food_item.price %></p>
+
+  
+  
+
+
+<div class="quantity-section">
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+  <div class="quantity-section">
+  <% if @current_cart.has_food_item?(@food_item) %>
+    <%= button_to "Remove from Cart", line_item_remove_path(:id => @food_item.id), class: 'remove-from-cart-btn' ,data: {turbo_method: :delete,
+    turbo_confirm: "Are you sure?"}%>
+  <% else %>
+    <%= button_to "Add to Cart", line_items_path(:food_item_id => @food_item.id,:restaurant_id=>@food_item.restaurant_id), method: :post %>
+  <% end %>
+</div>
+ </div>
+
+<div class="actions">
+    <%= link_to 'Back to Food Items', restaurant_food_items_path %>
+</div>
+
+</div>

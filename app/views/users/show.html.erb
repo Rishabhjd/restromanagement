@@ -1,0 +1,29 @@
+
+
+<p id="notice"><%= notice %></p>
+
+<h1>user show page</h1>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%="#{@user.firstname}#{@user.lastname}" %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%=@user.address %>
+</p>
+
+<p>
+  <strong>Contact No:</strong>
+  <%=@user.contactno %>
+</p>
+
+
+<!-- include others, etc. -->
+

@@ -1,0 +1,73 @@
+<header>
+  <h1>Restaurant App</h1>
+  <!-- Add any additional header content or navigation links -->
+ 
+  
+  
+  <nav>
+    <ul class="flex">
+      <li><%= link_to 'Home', root_path, rel: 'noopener noreferrer' %></li>
+      <% if user_signed_in? %>
+       
+        <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, rel: 'noopener noreferrer' %></li>
+
+        <% if current_user.superadmin? %>
+          <li><%= link_to 'Manage Users', users_path, rel: 'noopener noreferrer' %></li>
+        <% end %>
+
+        <% if current_user.member? %>
+          <li><%= link_to 'View Orders', orders_path, rel: 'noopener noreferrer' %></li>
+        <% end %>
+
+      <% else %>
+        <li><%= link_to 'Sign Up', new_user_registration_path, rel: 'noopener noreferrer' %></li>
+        <li><%= link_to 'Sign In', new_user_session_path, rel: 'noopener noreferrer' %></li>
+      <% end %>
+    </ul>
+  </nav>
+</header>
+<style>
+/* Add this to your stylesheet (e.g., application.css or application.scss) */
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 10px;
+  font-size: 20px
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  color: #ffd700; /* Change this to your desired hover color */
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+/* Add more styles as needed */
+
+</style>

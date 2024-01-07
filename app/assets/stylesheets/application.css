@@ -1,0 +1,210 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ .restaurants {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 10px;
+  }
+ 
+  
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+    width: 200px;
+  }
+  /* app/assets/stylesheets/application.css */
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  header img{
+    display:inline;
+  color: #ccc;
+  align-items: end;
+  justify-content: flex-end;
+  }
+  
+  footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  /* app/assets/stylesheets/application.css */
+/* You can customize these styles based on your design preferences */
+
+.quantity-section {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the child elements horizontally */
+    margin-top: 20px;
+  }
+  
+  .quantity-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid #111111;
+    color: #171817;
+    background-color: #fff;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .quantity-btn:hover {
+    background-color: #4CAF50;
+    color: #fff;
+  }
+  
+  .add-to-order-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: #fff;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .add-to-order-btn:hover {
+    background-color: #181a18;
+  }
+  
+  .quantity {
+    margin: 0 10px; /* Adjust the spacing between quantity and buttons */
+  }
+  
+  /* Additional styles for the overall layout */
+  .food-item-details {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .actions {
+    margin-top: 20px;
+  }
+  
+  /* You can add more styles based on your application's design */
+  
+  /* app/assets/stylesheets/application.css */
+#cart-sidebar {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  padding-top: 20px;
+  transition: 0.5s;
+}
+
+#cart-sidebar h2 {
+  color: white;
+  text-align: center;
+}
+
+#cart-sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#cart-sidebar li {
+  padding: 8px;
+  text-align: center;
+  color: white;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+  #cart-sidebar {
+    width: 0;
+    overflow-x: hidden;
+  }
+
+  #cart-sidebar.open {
+    width: 100%;
+  }
+}
+.small-container{
+  max-width:1080px;
+  margin:auto;
+  padding-left:25px;
+  padding-right:25px;
+}
+.cart-page{
+  margin: 80px auto;
+  
+}
+table{
+  width:100%;
+  border-collapse: collapse;
+}
+.cart-info{
+  display: flex;
+  flex-wrap: wrap;
+}
+th{
+  text-align: left;
+  padding: 5px;
+  color: #fff;
+  background: #ff523b;
+  font-weight: normal;
+}
+td{
+  padding: 10px 5px;
+}
+td input{
+  width: 40px;
+  height: 30px;
+  padding: 5px;
+}
+td a{
+  color: #ff523b;
+  font-size: 12px;
+}
+td img{
+  width: 80px;
+  height:80px;
+  margin-right: 10px;
+}
+.total-price{
+  display: flex;
+  justify-content: flex-end;
+  
+}
+.total-price table{
+  border-top: 3px solid #ff523b;
+  width: 100%;
+  max-width:400px; 
+}
+td:last-child{
+  text-align: right;
+}
+th:last-child{
+  text-align: right;
+}

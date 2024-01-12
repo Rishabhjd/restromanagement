@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # end
   # get 'carts/show'
   resource :cart, only: [:show, :destroy]
-
+resources :line_items
    get '/orders',to: "orders#index"
   # get 'orders/index'
   # get 'orders/show'
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   end
  end
 end
-resources :orders,only:[:new,:create]
+resources :orders,only:[:new,:create,:show]
 
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

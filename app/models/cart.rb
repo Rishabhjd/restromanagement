@@ -1,7 +1,7 @@
 class Cart < ApplicationRecord
     has_many :line_items,dependent: :destroy
     has_many :food_items,through: :line_items
-    
+    belongs_to :user
     def has_food_item?(food_item)
         line_items.exists?(food_item: food_item)
       end

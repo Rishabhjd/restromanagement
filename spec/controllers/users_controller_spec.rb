@@ -5,7 +5,7 @@ RSpec.describe UsersController, type: :controller do
   include Devise::Test::ControllerHelpers
   let(:user) do
     User.create!(
-      email: 'soltestm@example.com',
+      email: 'lsoltestm@example.com',
       password: 123456,
       firstname: 'John',
       lastname: 'Doe',
@@ -27,7 +27,7 @@ RSpec.describe UsersController, type: :controller do
  
     it "assigns @users" do
       user = User.create!(
-        email: 'aqtlestm@examsple.com',
+        email: 'aaqtlestm@examsple.com',
         password: 123456,
         firstname: 'Johns',
         lastname: 'Doe',

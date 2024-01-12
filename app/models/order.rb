@@ -3,5 +3,5 @@ class Order < ApplicationRecord
   has_many :restaurants, through: :line_items
   has_many :line_items
   enum status: %i[pending placed]
-  validates :name,:email,:address,presence: true
+  validates :address,presence: true
 end

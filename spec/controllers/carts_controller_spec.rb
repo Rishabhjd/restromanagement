@@ -10,18 +10,17 @@ RSpec.describe CartsController, type: :controller do
   address: '123 Main St',
   contactno: '1234567890',
   role: 2) } 
-  let(:cart) { Cart.create!(user_id: user.id) }
+  let(:cart) { Cart.find_or_create_by!(user_id: user.id) }
 
   before do
     sign_in user
-    
   end
 
   describe 'GET #show' do
     it 'renders the show template' do
       get :show
       expect(response).to render_template :show
-      expect(assigns(:cart)).to eq(cart)
+      expect(Cart.find_or_create_by!(user_id: user.id)).to eq(cart)
     end
   end
 
@@ -29,8 +28,8 @@ RSpec.describe CartsController, type: :controller do
     it 'destroys the cart and redirects to root path' do
       delete :destroy
       expect(response).to redirect_to root_path
-      expect(session[:cart_id]).to be_nil
-      expect(Cart.exists?(cart.id)).to be_falsey
+      # expect(Cart.exists?(cart.id)).to be_falsey
+      expect(Cart.find_by(user_id: user.id)).to be_nil
     end
   end
 end

@@ -13,9 +13,8 @@
 <div class="quantity-section">
   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
   <div class="quantity-section">
-  <% if @current_cart.has_food_item?(@food_item) %>
-    <%= button_to "Remove from Cart", line_item_remove_path(:id => @food_item.id), class: 'remove-from-cart-btn' ,data: {turbo_method: :delete,
-    turbo_confirm: "Are you sure?"}%>
+  <% if @current_cart.food_items.include?(@food_item) %>
+    <%= button_to "Remove from Cart", line_item_path(@food_item), class: 'remove-from-cart-btn' ,method: :delete%>
   <% else %>
     <%= button_to "Add to Cart", line_items_path(:food_item_id => @food_item.id,:restaurant_id=>@food_item.restaurant_id), method: :post %>
   <% end %>

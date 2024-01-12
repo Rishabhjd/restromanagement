@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   load_and_authorize_resource
   before_action :authenticate_user!
+
   def index
   if current_user.member?
     @orders=Order.accessible_by(current_ability).order(:id)
@@ -9,15 +10,19 @@ class OrdersController < ApplicationController
    @restaurant=Restaurant.find(params[:restaurant_id])
    if current_user.owner?
 #  Order.each do |s| s.line_items.each do |f| FoodItem.where(id: f.food_item_id).each do |restauran|  @match_restaurant_id=restauran.restaurant_id end end end
- byebug
+ 
 @orders=@restaurant.orders.all
 end
   end
   end
 
   def show
+    if current_user.owner?
     @restaurant=Restaurant.find(params[:restaurant_id])
     @order = Order.find(params[:id])
+    elsif current_user.member?
+      @order = Order.find(params[:id])
+    end
   end
 
   def fetch_orders_for_restaurant
@@ -50,7 +55,7 @@ end
   
   def create
   @order=Order.new(order_params)
-  @current_cart.line_items.each do|item|
+  current_cart.line_items.each do|item|
   @order.line_items<<item
   item.cart_id=nil
   end
@@ -58,11 +63,11 @@ end
   # @order.restaurant_id= session['restaurant']["id"]
  
   # session['restaurant']=nil
- debugger
+ 
   @order.save
 
-  Cart.destroy(session[:cart_id])
-  session[:cart_id]=nil
+  Cart.destroy(current_cart.id)
+  
   redirect_to root_path
 end
 
@@ -70,8 +75,4 @@ private
 def order_params
 params.require(:order).permit(:name,:email,:address,:user_id,:restaurant_id)
 end
-
-
-
-
 end

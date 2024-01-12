@@ -24,10 +24,10 @@ class RestaurantsController < ApplicationController
     if user_signed_in?
 
       if current_user.owner?
-      @restaurants= current_user.restaurants
+      @restaurants= current_user.restaurants.page(params[:page]).per(10)
       
       else
-        @restaurants=Restaurant.all  
+        @restaurants=Restaurant.all.page(params[:page]).per(10)  
     end
   end
  
@@ -52,15 +52,7 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  def landing
-    redirect_to(action: :home,
-                params: request.query_parameters) if user_signed_in?
-  end
-
-  def home
-    redirect_to(action: :landing,
-                params: request.query_parameters) unless user_signed_in?
-  end
+  
   def destroy
     @restaurant.destroy
     redirect_to root_path

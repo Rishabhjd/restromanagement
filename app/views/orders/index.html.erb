@@ -34,7 +34,7 @@
 <th>Email</th>
 <th>Address</th>
 <th>Status</th>
-
+<th>Action</th>
 
 </tr>
 </thead>
@@ -45,7 +45,7 @@
   <td><%=order.address%></td>
 
   <td><%=order.status%></td>
-  
+  <td><%= link_to 'View Details',"/orders/#{order.id}"%></td>
   </tr>
   <%end%>
   </tbody>

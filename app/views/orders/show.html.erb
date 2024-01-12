@@ -1,4 +1,6 @@
 <table border='1'>
+<% if user_signed_in? %>
+<% if current_user.owner? %>
 <%@restaurant.line_items.each do |line_item| %>
 <thead>
 <tr>
@@ -15,5 +17,26 @@
 </tr>
 </tbody>
 <%end%>
-</table>
 
+</table>
+<% elsif current_user.member? %>
+
+    <thead>
+    <tr>
+    <th>Quantity</th>
+    <th>Name</th>
+    <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <%@order.line_items.each do |line_item| %>
+    <td><%= line_item.quantity%> </td>
+    <td><%= line_item.food_item.name%></td>
+    <td>Rs <%= line_item.food_item.price%></td>
+    </tr>
+    </tbody>
+    <%end%>
+    <%end%>
+    <%end%>
+    </table>

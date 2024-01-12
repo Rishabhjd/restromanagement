@@ -1,5 +1,6 @@
 class FoodItemsController < ApplicationController
   before_action :set_restaurant, only: [:new, :create,:index,:edit,:update,:destroy,:show]
+  before_action:current_cart,only:[:show]
   load_and_authorize_resource
  before_action :authenticate_user!
   def index
@@ -21,8 +22,9 @@ class FoodItemsController < ApplicationController
   end
 
   def show
+   
    @food_item=@restaurant.food_items.find(params[:id])
-   session[:food_items] ||= {}
+  
   #  @line_item.restaurant_id=@restaurant.id
   end
  
@@ -55,11 +57,17 @@ private
 
   def set_restaurant
     @restaurant = Restaurant.find(params[:restaurant_id])
-    # session['restaurant']=@restaurant
+    
   end
  
 
   def food_item_params
     params.require(:food_item).permit(:name,  :price,:ingredients,:image)
+  end
+
+  
+
+  def current_cart
+    @current_cart ||= Cart.find_or_create_by(user: current_user)
   end
 end

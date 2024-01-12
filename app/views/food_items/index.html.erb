@@ -10,9 +10,7 @@
   <% @food_items.each do |food_item| %>
     <div class="card">
       <h3><%= food_item.name %></h3>
-      <% if food_item.image.present? %>
-      <%= image_tag food_item.image, class: 'restaurant-image' %>
-    <% end %>
+     
       <p><%= number_to_currency(food_item.price,unit: "Rs") %></p>
       <%= link_to 'View Details', "../#{@restaurant.id}/food_items/#{food_item.id}", class: 'btn btn-primary' %>
   
@@ -57,8 +55,3 @@
 <%end%>
 <%#= link_to 'Manage Food Items', restaurant_food_items_path(restaurant) %>
 
-<%end%>
-</tbody>
-</table>
-<%end%>
-<%#= link_to 'Manage Food Items', restaurant_food_items_path(restaurant) %>

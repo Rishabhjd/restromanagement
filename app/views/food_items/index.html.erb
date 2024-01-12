@@ -6,11 +6,13 @@
 <h1><%= @restaurant.name %></h1>
 
 <h1>Food Items</h1>
-<div class="food-items">
+<div class="restaurants">
   <% @food_items.each do |food_item| %>
     <div class="card">
       <h3><%= food_item.name %></h3>
-      <p><%= food_item.ingredients %></p>
+      <% if food_item.image.present? %>
+      <%= image_tag food_item.image, class: 'restaurant-image' %>
+    <% end %>
       <p><%= number_to_currency(food_item.price,unit: "Rs") %></p>
       <%= link_to 'View Details', "../#{@restaurant.id}/food_items/#{food_item.id}", class: 'btn btn-primary' %>
   
@@ -18,13 +20,13 @@
   <% end %>
 </div>
 <%else%>
+
+<h1>FoodItems</h1>
+<%= link_to "New FoodItems?",new_restaurant_food_item_path %><br>
 <% if current_user.owner? %>
-  <%= link_to "Manage orders", restaurant_orders_path, rel: 'noopener noreferrer' %>
+  <%= link_to "Manage orders", restaurant_orders_path, rel: 'noopener noreferrer' , class: 'btn btn-secondary' %>
   
   <%end%>
-<h1>FoodItems</h1>
-<%= link_to "New FoodItems?",new_restaurant_food_item_path%><br>
-
 <table border='1'>
 <thead>
 <tr>
@@ -49,6 +51,12 @@
 
 </td>
 </tr>
+<%end%>
+</tbody>
+</table>
+<%end%>
+<%#= link_to 'Manage Food Items', restaurant_food_items_path(restaurant) %>
+
 <%end%>
 </tbody>
 </table>

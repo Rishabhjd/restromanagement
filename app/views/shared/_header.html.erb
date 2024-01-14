@@ -8,7 +8,7 @@
     <ul class="flex">
       <li><%= link_to 'Home', root_path, rel: 'noopener noreferrer' %></li>
       <% if user_signed_in? %>
-       
+       <li><%= link_to 'My Profile', user_path(current_user), rel: 'noopener noreferrer' %></li>
         <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, rel: 'noopener noreferrer' %></li>
 
         <% if current_user.superadmin? %>

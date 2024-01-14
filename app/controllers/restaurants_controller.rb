@@ -13,7 +13,7 @@ class RestaurantsController < ApplicationController
    
     if @restaurant.save
       @restaurant.users<<User.find(restaurant_params[:user_id])
-      redirect_to root_path
+      redirect_to root_path, notice: 'Restaurant was successfully created.'
     else
       render :new
     end

@@ -9,6 +9,11 @@
 <div class="restaurants">
   <% @food_items.each do |food_item| %>
     <div class="card">
+<% if food_item.image.present? %>
+    <%= image_tag food_item.image, class: 'restaurant-image' %>
+  <% else %>
+    <p>No image available</p>
+  <% end %>
       <h3><%= food_item.name %></h3>
      
       <p><%= number_to_currency(food_item.price,unit: "Rs") %></p>

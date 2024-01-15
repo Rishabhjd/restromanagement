@@ -7,8 +7,9 @@
   <nav>
     <ul class="flex">
       <li><%= link_to 'Home', root_path, rel: 'noopener noreferrer' %></li>
+      
       <% if user_signed_in? %>
-       <li><%= link_to 'My Profile', user_path(current_user), rel: 'noopener noreferrer' %></li>
+      <li><%= link_to 'My Profile', user_path(current_user), rel: 'noopener noreferrer' %></li>
         <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, rel: 'noopener noreferrer' %></li>
 
         <% if current_user.superadmin? %>
@@ -23,6 +24,13 @@
         <li><%= link_to 'Sign Up', new_user_registration_path, rel: 'noopener noreferrer' %></li>
         <li><%= link_to 'Sign In', new_user_session_path, rel: 'noopener noreferrer' %></li>
       <% end %>
+      <% if user_signed_in? %>
+      <% if current_user.member? %>
+      <li><%= link_to 'My cart', cart_path(current_user.cart), rel: 'noopener noreferrer' %><li>
+      <%end%>
+      <%else%>
+      <li><%= link_to 'My cart', new_user_session_path, rel: 'noopener noreferrer' %><li>
+      <%end%>
     </ul>
   </nav>
 </header>

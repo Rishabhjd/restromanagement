@@ -13,10 +13,11 @@
   </head>
 
   <body>
+ <%= render 'shared/header' %>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   
-  <%= render 'shared/header' %>
+ 
     <%= yield %>
     <%= render 'shared/footer' %>
     <!-- Assuming you want pagination links at the bottom of your table -->
